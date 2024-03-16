@@ -19,8 +19,10 @@
 package flinkdemo;
 
 import dto.Transaction;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import service.JSONValueDeserializationSchema;
 
@@ -41,6 +43,10 @@ public class DataStreamJob {
                 .setValueOnlyDeserializer(new JSONValueDeserializationSchema())
                 .build();
 
+        DataStream<Transaction> transactionDataStream = env
+                .fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka source");
+
+        transactionDataStream.print();
         env.execute("Flink Java API Skeleton");
     }
 }

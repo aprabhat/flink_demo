@@ -60,7 +60,7 @@ services:
       retries: 5
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.1
     container_name: es-container
     environment:
       - xpack.security.enabled=false
@@ -70,7 +70,7 @@ services:
 
   kibana:
     container_name: kb-container
-    image: docker.elastic.co/kibana/kibana
+    image: docker.elastic.co/kibana/kibana:8.11.1
     environment:
       - ELASTICSEARCH_HOSTS=http://es-container:9200
     depends_on:
@@ -99,4 +99,4 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
-        taskmanager.numberOfTaskSlots: 2
+        taskmanager.numberOfTaskSlots: 5
