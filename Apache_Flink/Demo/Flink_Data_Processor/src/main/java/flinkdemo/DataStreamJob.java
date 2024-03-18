@@ -36,7 +36,7 @@ public class DataStreamJob {
 
         KafkaSource<Transaction> source = KafkaSource
                 .<Transaction>builder()
-                .setBootstrapServers("localhost:9092")
+                .setBootstrapServers("broker:29092")
                 .setTopics(topic)
                 .setGroupId("flink-group")
                 .setStartingOffsets(OffsetsInitializer.earliest())
