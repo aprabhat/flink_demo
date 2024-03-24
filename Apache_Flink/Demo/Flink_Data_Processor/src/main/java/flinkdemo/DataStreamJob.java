@@ -60,7 +60,6 @@ public class DataStreamJob {
 
         //create transactions table
         transactionDataStream.addSink(JdbcSink.sink("CREATE TABLE IF NOT EXISTS transactions (" + "transaction_id VARCHAR(255) PRIMARY KEY, " + "product_id VARCHAR(255), " + "product_name VARCHAR(255), " + "product_category VARCHAR(255), " + "product_price DOUBLE PRECISION, " + "product_quantity INTEGER, " + "product_brand VARCHAR(255), " + "total_amount DOUBLE PRECISION, " + "currency VARCHAR(255), " + "customer_id VARCHAR(255), " + "transaction_date TIMESTAMP, " + "payment_method VARCHAR(255) " + ")", (JdbcStatementBuilder<Transaction>) (preparedStatement, transaction) -> {
-
         }, execOptions, connOptions)).name("Create Transactions Table Sink");
 
         //create sales_per_category table sink
