@@ -1,0 +1,4 @@
+docker pull dajobe/hbase
+mkdir data
+$ id=$(docker run --name=hbase-docker -h hbase-docker -d -v $PWD/data:/data dajobe/hbase)
+docker run --rm -it --link aa206c11c48d:hbase-docker dajobe/hbase hbase shell
